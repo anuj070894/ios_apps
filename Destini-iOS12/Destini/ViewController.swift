@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
     // Our strings
     let story1 = "Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: \"Need a ride, boy?\"."
     let answer1a = "I\'ll hop in. Thanks for the help!"
@@ -34,18 +35,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var bottomButton: UIButton!      // Has TAG = 2
     @IBOutlet weak var storyTextView: UILabel!
     
+    @IBOutlet weak var restartButton: UIButton!
     // TODO Step 5: Initialise instance variables here
     var storyIndex : Int = 1
     
-    
+    @IBAction func restartButtonPressed(_ sender: UIButton) {
+        initialiseStory()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         // TODO Step 3: Set the text for the storyTextView, topButton, bottomButton, and to T1_Story, T1_Ans1, and T1_Ans2
+        initialiseStory()
+    }
+    
+    func initialiseStory() {
+        restartButton.isHidden = true
         storyIndex = 1
         updateUI(story: story1, topButtonText: answer1a, bottomButtonText: answer1b)
+        showButtons()
     }
 
     
@@ -94,6 +105,12 @@ class ViewController: UIViewController {
     func hideButtons() {
         topButton.isHidden = true
         bottomButton.isHidden = true
+        restartButton.isHidden = false
+    }
+    
+    func showButtons() {
+        topButton.isHidden = false
+        bottomButton.isHidden = false
     }
 
 }
